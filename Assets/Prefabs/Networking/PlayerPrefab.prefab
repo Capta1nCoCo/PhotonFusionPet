@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 3d68459228a1d884194629f8e906c03e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,6 +117,8 @@ GameObject:
   - component: {fileID: 2549017020991258148}
   - component: {fileID: 9144532873171258072}
   - component: {fileID: 1921140711519990947}
+  - component: {fileID: 2733403555069408383}
+  - component: {fileID: 4304677571903317233}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -158,6 +160,8 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 1921140711519990947}
+  - {fileID: 2733403555069408383}
+  - {fileID: 4304677571903317233}
 --- !u!143 &9144532873171258072
 CharacterController:
   m_ObjectHideFlags: 0
@@ -197,8 +201,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: -9.81
-  jumpImpulse: 8
+  jumpImpulse: 5
   acceleration: 10
   braking: 10
-  maxSpeed: 2
+  maxSpeed: 4
   rotationSpeed: 15
+--- !u!114 &2733403555069408383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6474726099853532712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5074441e8a6b5941bdab75361903f9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4304677571903317233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6474726099853532712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2063c836bcbf445849c6a983c307df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraPrefab: {fileID: 695196535543818342, guid: 77e32dcd6d476ac4fb6288919fd5b51c,
+    type: 3}
