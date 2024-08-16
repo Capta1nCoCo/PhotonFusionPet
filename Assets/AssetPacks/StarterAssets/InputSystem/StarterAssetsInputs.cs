@@ -8,10 +8,10 @@ namespace StarterAssets
 	public class StarterAssetsInputs : MonoBehaviour
 	{
 		[Header("Character Input Values")]
-		public Vector2 move;
-		public Vector2 look;
-		public bool jump;
-		public bool sprint;
+		[SerializeField] private Vector2 move;
+        [SerializeField] private Vector2 look;
+        [SerializeField] private bool jump;
+		[SerializeField] private bool sprint;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -20,8 +20,16 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+        public Vector2 getMove { get { return move; } }
+        public Vector2 getLook { get { return look; } }
+        public bool getJump { get { return jump; } }
+        public bool getSprint { get { return sprint; } }
+
+        public bool setJump { set { jump = value; } }
+
+
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}

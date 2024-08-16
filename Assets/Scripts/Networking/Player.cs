@@ -1,20 +1,21 @@
 using Fusion;
+using StarterAssets;
+using UnityEngine.InputSystem;
 
 public class Player : NetworkBehaviour
 {
     private NetworkCharacterController _cc;
-
-    private void Awake()
-    {
-        _cc = GetComponent<NetworkCharacterController>();
-    }
+    public ThirdPersonController _controller;
+    public bool isInitialized;
 
     public override void FixedUpdateNetwork()
     {
-        if (GetInput(out NetworkInputData data))
+        if (isInitialized)
         {
-            data.direction.Normalize();
-            _cc.Move(5 * data.direction * Runner.DeltaTime);
+            if (GetInput(out NetworkInputData data))
+            {
+                _controller.PlayerMovement(data);
+            }
         }
     }
 }

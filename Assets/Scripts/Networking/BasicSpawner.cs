@@ -4,10 +4,19 @@ using Fusion;
 using Fusion.Sockets;
 using System.Collections.Generic;
 using System;
+using StarterAssets;
 
 public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
+    [SerializeField] private StarterAssetsInputs _input;
     private NetworkRunner _runner;
+
+    public StarterAssetsInputs setInput { set {_input = value; } }
+
+    public void Init(StarterAssetsInputs playerInput)
+    {
+        _input = playerInput;
+    }
 
     async void StartGame(GameMode mode)
     {
@@ -73,8 +82,13 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnInput(NetworkRunner runner, NetworkInput input) 
     {
+        if (_input == null) { return; }
         var data = new NetworkInputData();
-
+        data.move = _input.getMove;
+        data.look = _input.getLook;
+        data.jump = _input.getJump;
+        data.sprint = _input.getSprint;
+        /*
         if (Input.GetKey(KeyCode.W))
             data.direction += Vector3.forward;
 
@@ -86,7 +100,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
         if (Input.GetKey(KeyCode.D))
             data.direction += Vector3.right;
-
+        */
         input.Set(data);
     }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
