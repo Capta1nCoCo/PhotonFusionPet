@@ -4,17 +4,20 @@ using UnityEngine.InputSystem;
 
 public class Player : NetworkBehaviour
 {
-    private NetworkCharacterController _cc;
-    public ThirdPersonController _controller;
-    public bool isInitialized;
+    private ThirdPersonController _tpController;
+
+    public void Initialization(ThirdPersonController thirdPersonController)
+    {
+        _tpController = thirdPersonController;
+    }
 
     public override void FixedUpdateNetwork()
     {
-        if (isInitialized)
+        if (_tpController != null)
         {
             if (GetInput(out NetworkInputData data))
             {
-                _controller.PlayerMovement(data);
+                _tpController.PlayerMovement(data);
             }
         }
     }

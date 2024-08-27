@@ -129,17 +129,17 @@ namespace StarterAssets
             if (_mainCamera == null)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-                FindObjectOfType<BasicSpawner>().Init(_input);
+                //FindObjectOfType<BasicSpawner>().Init(_input);
             }
         }
 
-        private void Start()
+        public void Initialization(StarterAssetsInputs input)
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
-            _input = GetComponent<StarterAssetsInputs>();
+            _input = input;
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else

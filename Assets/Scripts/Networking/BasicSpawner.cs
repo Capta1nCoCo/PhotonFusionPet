@@ -13,8 +13,9 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public StarterAssetsInputs setInput { set {_input = value; } }
 
-    public void Init(StarterAssetsInputs playerInput)
+    public void Initialization(StarterAssetsInputs playerInput)
     {
+        if (_input != null) { return; }
         _input = playerInput;
     }
 
