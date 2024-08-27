@@ -89,19 +89,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         data.look = _input.getLook;
         data.jump = _input.getJump;
         data.sprint = _input.getSprint;
-        /*
-        if (Input.GetKey(KeyCode.W))
-            data.direction += Vector3.forward;
-
-        if (Input.GetKey(KeyCode.S))
-            data.direction += Vector3.back;
-
-        if (Input.GetKey(KeyCode.A))
-            data.direction += Vector3.left;
-
-        if (Input.GetKey(KeyCode.D))
-            data.direction += Vector3.right;
-        */
         input.Set(data);
     }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }

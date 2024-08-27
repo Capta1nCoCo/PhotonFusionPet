@@ -1,6 +1,5 @@
 using Fusion;
 using StarterAssets;
-using UnityEngine.InputSystem;
 
 public class Player : NetworkBehaviour
 {
