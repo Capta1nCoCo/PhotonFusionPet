@@ -677,21 +677,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasicSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 3889594459489503486, guid: 42c362fa8a2c6754e8fc864e8de6f178,
-        type: 3}
-      propertyPath: _input
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3889594459489503486, guid: 42c362fa8a2c6754e8fc864e8de6f178,
-        type: 3}
-      propertyPath: _playerPrefab.RawGuidValue.Array.data[0]
-      value: 310752657471940959
-      objectReference: {fileID: 0}
-    - target: {fileID: 3889594459489503486, guid: 42c362fa8a2c6754e8fc864e8de6f178,
-        type: 3}
-      propertyPath: _playerPrefab.RawGuidValue.Array.data[1]
-      value: 5905685629709888057
-      objectReference: {fileID: 0}
     - target: {fileID: 7451840703322907284, guid: 42c362fa8a2c6754e8fc864e8de6f178,
         type: 3}
       propertyPath: m_LocalPosition.x

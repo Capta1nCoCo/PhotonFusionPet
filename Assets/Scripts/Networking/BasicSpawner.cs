@@ -8,10 +8,10 @@ using StarterAssets;
 
 public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
-    [SerializeField] private StarterAssetsInputs _input;
+    private StarterAssetsInputs _input;
     private NetworkRunner _runner;
 
-    public StarterAssetsInputs setInput { set {_input = value; } }
+    public StarterAssetsInputs setInput { set { _input = value; } }
 
     public void Initialization(StarterAssetsInputs playerInput)
     {
@@ -81,14 +81,26 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
 
+    private bool _mouseButton0;
+    private void Update()
+    {
+        _mouseButton0 = _mouseButton0 | Input.GetMouseButton(0);
+    }
+
     public void OnInput(NetworkRunner runner, NetworkInput input) 
     {
         if (_input == null) { return; }
+
         var data = new NetworkInputData();
+            
         data.move = _input.getMove;
         data.look = _input.getLook;
         data.jump = _input.getJump;
         data.sprint = _input.getSprint;
+        data.buttons.Set(NetworkInputData.MOUSEBUTTON0, _mouseButton0);
+
+        _mouseButton0 = false;
+
         input.Set(data);
     }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
