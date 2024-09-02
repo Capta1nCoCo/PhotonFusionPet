@@ -8,13 +8,14 @@ using StarterAssets;
 
 public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
-    [SerializeField] private StarterAssetsInputs _input;
+    private StarterAssetsInputs _input;
     private NetworkRunner _runner;
 
-    public StarterAssetsInputs setInput { set {_input = value; } }
+    public StarterAssetsInputs setInput { set { _input = value; } }
 
-    public void Init(StarterAssetsInputs playerInput)
+    public void Initialization(StarterAssetsInputs playerInput)
     {
+        if (_input != null) { return; }
         _input = playerInput;
     }
 
@@ -80,27 +81,26 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         }
     }
 
+    private bool _mouseButton0;
+    private void Update()
+    {
+        _mouseButton0 = _mouseButton0 | Input.GetMouseButton(0);
+    }
+
     public void OnInput(NetworkRunner runner, NetworkInput input) 
     {
         if (_input == null) { return; }
+
         var data = new NetworkInputData();
+            
         data.move = _input.getMove;
         data.look = _input.getLook;
         data.jump = _input.getJump;
         data.sprint = _input.getSprint;
-        /*
-        if (Input.GetKey(KeyCode.W))
-            data.direction += Vector3.forward;
+        data.buttons.Set(NetworkInputData.MOUSEBUTTON0, _mouseButton0);
 
-        if (Input.GetKey(KeyCode.S))
-            data.direction += Vector3.back;
+        _mouseButton0 = false;
 
-        if (Input.GetKey(KeyCode.A))
-            data.direction += Vector3.left;
-
-        if (Input.GetKey(KeyCode.D))
-            data.direction += Vector3.right;
-        */
         input.Set(data);
     }
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
