@@ -158,12 +158,14 @@ namespace StarterAssets
             JumpAndGravity(data);
             GroundedCheck();
             Move(data);
-        }
-
-        private void LateUpdate()
-        {
+            // LateUpdate
             CameraRotation();
         }
+
+        /*private void LateUpdate()
+        {
+            CameraRotation();
+        }*/
 
         private void AssignAnimationIDs()
         {

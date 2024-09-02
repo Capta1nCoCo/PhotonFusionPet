@@ -25,8 +25,8 @@ public class Player : NetworkBehaviour
             {
                 _tpController.PlayerMovement(data);
 
-                if (data.direction.sqrMagnitude > 0)
-                    _forward = data.direction;
+                if (data.move.sqrMagnitude > 0)
+                    _forward = new Vector3(data.move.x, 0f, data.move.y);
 
                 if (HasStateAuthority && delay.ExpiredOrNotRunning(Runner))
                 {
