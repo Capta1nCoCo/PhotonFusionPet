@@ -104,7 +104,9 @@ namespace StarterAssets
         private Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
-        private GameObject _mainCamera;
+        private GameObject _playerCamera;
+
+        public GameObject setCamera { set { _playerCamera = value; } }
 
         private const float _threshold = 0.01f;
 
@@ -119,15 +121,6 @@ namespace StarterAssets
 #else
 				return false;
 #endif
-            }
-        }
-
-
-        private void Awake()
-        {
-            if (_mainCamera == null)
-            {
-                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
         }
 
@@ -158,14 +151,12 @@ namespace StarterAssets
             JumpAndGravity(data);
             GroundedCheck();
             Move(data);
-            // LateUpdate
-            CameraRotation();
         }
 
-        /*private void LateUpdate()
+        private void LateUpdate()
         {
             CameraRotation();
-        }*/
+        }
 
         private void AssignAnimationIDs()
         {
@@ -243,10 +234,10 @@ namespace StarterAssets
 
             // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is a move input rotate player when the player is moving
-            if (data.move != Vector2.zero)
+            if (data.move != Vector2.zero && _playerCamera != null)
             {
                 _targetRotation = Mathf.Atan2(inputDirectionNormalized.x, inputDirectionNormalized.z) * Mathf.Rad2Deg +
-                                  _mainCamera.transform.eulerAngles.y;
+                                  _playerCamera.transform.eulerAngles.y;
                 float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
                     RotationSmoothTime);
 
