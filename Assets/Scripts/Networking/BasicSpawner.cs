@@ -57,6 +57,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             }
         }
     }
+
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
 
@@ -97,8 +98,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         data.look = _input.getLook;
         data.jump = _input.getJump;
         data.sprint = _input.getSprint;
-        data.buttons.Set(NetworkInputData.MOUSEBUTTON0, _mouseButton0);
 
+        data.buttons.Set(NetworkInputData.MOUSEBUTTON0, _mouseButton0);
         _mouseButton0 = false;
 
         input.Set(data);

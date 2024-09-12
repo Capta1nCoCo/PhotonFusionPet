@@ -24,9 +24,7 @@ public class Player : NetworkBehaviour
             if (GetInput(out NetworkInputData data))
             {
                 _tpController.PlayerMovement(data);
-
-                if (data.direction.sqrMagnitude > 0)
-                    _forward = data.direction;
+                _forward = transform.forward.normalized;
 
                 if (HasStateAuthority && delay.ExpiredOrNotRunning(Runner))
                 {

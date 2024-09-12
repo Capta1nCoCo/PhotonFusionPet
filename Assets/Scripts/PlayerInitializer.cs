@@ -20,4 +20,9 @@ public class PlayerInitializer : MonoBehaviour
         Player player = GetComponent<Player>();
         player.Initialization(_tpController);
     }
+
+    public void SetPlayerCamera(GameObject camera)
+    {
+        _tpController.setCamera = camera;
+    }
 }
