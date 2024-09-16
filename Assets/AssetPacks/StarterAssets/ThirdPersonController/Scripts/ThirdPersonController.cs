@@ -151,11 +151,12 @@ namespace StarterAssets
             JumpAndGravity(data);
             GroundedCheck();
             Move(data);
+            CameraRotation(data);
         }
 
         private void LateUpdate()
         {
-            CameraRotation();
+            //CameraRotation();
         }
 
         private void AssignAnimationIDs()
@@ -182,7 +183,7 @@ namespace StarterAssets
             }
         }
 
-        private void CameraRotation()
+        private void CameraRotation(NetworkInputData data)
         {
             // if there is an input and camera position is not fixed
             if (_input.getLook.sqrMagnitude >= _threshold && !LockCameraPosition)
@@ -190,8 +191,10 @@ namespace StarterAssets
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                _cinemachineTargetYaw += _input.getLook.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.getLook.y * deltaTimeMultiplier;
+                //_cinemachineTargetYaw += _input.getLook.x * deltaTimeMultiplier;
+                //_cinemachineTargetPitch += _input.getLook.y * deltaTimeMultiplier;
+                _cinemachineTargetYaw += data.look.x * deltaTimeMultiplier;
+                _cinemachineTargetPitch += data.look.y * deltaTimeMultiplier;
             }
 
             // clamp our rotations so our values are limited 360 degrees

@@ -85,7 +85,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     private bool _mouseButton0;
     private void Update()
     {
-        _mouseButton0 = _mouseButton0 | Input.GetMouseButton(0);
+        _mouseButton0 = _mouseButton0 | Input.GetMouseButtonDown(0);
     }
 
     public void OnInput(NetworkRunner runner, NetworkInput input) 
